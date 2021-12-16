@@ -26,6 +26,7 @@ Chapters:
    - class basic, object
    - inheritance
    - abstract class
+   - Encapsulation and access modifiers
 
 7. interface
 
@@ -475,41 +476,40 @@ user1.display();
 - example
 
   ```js
-      abstract class User {
-      userName: string;
-      age: number;
+  abstract class User {
+    userName: string;
+    age: number;
 
-      constructor(userName: string, age: number) {
-        this.userName = userName;
-        this.age = age;
-      }
-
-      abstract display(): void;
+    constructor(userName: string, age: number) {
+      this.userName = userName;
+      this.age = age;
     }
 
-    class Student extends User {
-      studentId: number;
+    abstract display(): void;
+  }
 
-      constructor(userName: string, age: number, studentId: number) {
-        super(userName, age);
-        this.studentId = studentId;
-      }
-      display(): void {
-        console.log(
-          `username: ${this.userName}, age: ${this.age}, id: ${this.studentId}`
-        );
-      }
+  class Student extends User {
+    studentId: number;
+
+    constructor(userName: string, age: number, studentId: number) {
+      super(userName, age);
+      this.studentId = studentId;
     }
+    display(): void {
+      console.log(
+        `username: ${this.userName}, age: ${this.age}, id: ${this.studentId}`
+      );
+    }
+  }
 
-    let student1 = new Student("keya", 31, 1302020015);
-    student1.display();
-
-    // let user2 = new User("Rabeya Islam", 31);
-    // user2.display();
+  let student1 = new Student("keya", 31, 1302020015);
+  student1.display();
 
   ```
 
-### 9. Interface
+#### 6.4 Encapsulation and access modifiers
+
+### 7. Interface
 
 - interface
 
