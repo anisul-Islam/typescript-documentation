@@ -89,3 +89,40 @@ x = [10, 20]; // Not correct
 #### 2.2 How does it work?
 
 - index.ts -> tsc index.ts -> index.js
+
+### 3. First typescript program
+
+#### 3.1 Example
+
+- typescript file extension is .ts
+- Run the following program using `tsc index.ts` command and then `node index.js`
+
+  ```js
+  // index.ts
+
+  // without ts
+  function addNumbers(num1, num2) {
+    console.log(num1 + num2);
+  }
+
+  addNumbers(20, 30);
+  addNumbers(20, "30");
+
+  // correct one using ts
+  function addNumbers(num1: number, num2:number) {
+    console.log(num1 + num2);
+  }
+
+  addNumbers(20, 30);
+  addNumbers(20, "30");
+
+
+  let num1 = 20;
+  console.log(num1);
+
+  let name= "anisul islam";
+  name. //intellisense support will be here
+  ```
+
+- some compiler flag
+  - tsc index.js --watch
