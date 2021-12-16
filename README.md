@@ -18,6 +18,7 @@ Chapters:
    - tuple type
    - enum type
    - any type
+   - object type
 
 ### 1. Introduction
 
@@ -321,3 +322,7 @@ x = [10, 20]; // Not correct
   let password: any;
   let passwords: any[];
   ```
+
+  #### 5.6 object Type
+
+- object Type: can store value as key value pair
