@@ -16,6 +16,7 @@ Chapters:
    - union type
    - Array type
    - tuple type
+   - enum type
 
 ### 1. Introduction
 
@@ -268,4 +269,45 @@ x = [10, 20]; // Not correct
 
   users.push(102, "sakib");
   console.log(users);
+  ```
+
+  #### 5.4 Enum Type
+
+- Enum Type: no duplicate data, helps to store constants
+
+  ```js
+  // enum example
+  // helps us to store constants
+
+  // numeric enum
+  enum UserRequest {
+    ReadData,
+    // ReadData = 2,
+    SaveData,
+    UpdateData,
+  }
+
+  console.log(UserRequest);
+  console.log(UserRequest.ReadData);
+  console.log(UserRequest.SaveData);
+
+  // string enum
+  enum UserRequest {
+    ReadData = "READ_DATA",
+    // ReadData = 2,
+    SaveData = "SAVE_DATA",
+    UpdateData = "UPDATE_DATA",
+  }
+
+  console.log(UserRequest);
+  console.log(UserRequest.ReadData);
+  console.log(UserRequest.SaveData);
+  console.log(UserRequest["UpdateData"]);
+
+  // Heterogeneous enum
+    enum User {
+    id = 101,
+    name = "anisul",
+    }
+
   ```
