@@ -328,6 +328,10 @@ x = [10, 20]; // Not correct
 - object Type: can store value as key value pair
 
   ```js
+  let names: object;
+  names = { name1: "anis" };
+  console.log(names);
+
   let users: object[];
   users = [];
 
