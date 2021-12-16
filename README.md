@@ -6,6 +6,8 @@ Chapters:
 
 1. Introduction
 2. Environment setup
+3. First Typescript program
+4. Data types
 
 ### 1. Introduction
 
@@ -166,6 +168,13 @@ x = [10, 20]; // Not correct
   let userName: string;
   let id: number;
   let isLoggedIn: boolean;
+
+  console.log(userId.toLowerCase()); // error here
+
+  function display(): void {
+    console.log("Hi I am display");
+  }
+  display();
   ```
 
 - inferred Typing
