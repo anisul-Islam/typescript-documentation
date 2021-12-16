@@ -418,6 +418,14 @@ x = [10, 20]; // Not correct
   user2.display();
   ```
 
+### 7. Inheritance
+
+- inheritance helps us to acquire properties of one class to another
+
+```js
+
+```
+
 ### 9. Function Overloading
 
 - we can declare multiple methods with same name but paramter types and return type must be different
