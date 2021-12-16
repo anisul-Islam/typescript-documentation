@@ -326,3 +326,24 @@ x = [10, 20]; // Not correct
   #### 5.6 object Type
 
 - object Type: can store value as key value pair
+
+  ```js
+  let users: object[];
+  users = [{ name: "anisul" }, { name: "rabu" }];
+
+  // let user1: { userId: number; userName: string };
+  // user1 = { userId: 101, userName: "anisul islam" };
+  // users.push(user1);
+
+  // let user2: { userId: number; userName: string };
+  // user2 = { userId: 102, userName: "rabeya islam" };
+  // users.push(user2);
+
+  // for (let index = 0; index < users.length; index++) {
+  //   console.log(users[index]["name"]);
+  // }
+
+  for (const key in users) {
+    console.log(users[key]);
+  }
+  ```
