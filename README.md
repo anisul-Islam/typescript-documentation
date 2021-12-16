@@ -15,6 +15,7 @@ Chapters:
 
    - union type
    - Array type
+   - tuple type
 
 ### 1. Introduction
 
@@ -213,7 +214,7 @@ x = [10, 20]; // Not correct
 
 #### 5.2 Array
 
-- Array Type- similar data type
+- Array Type- similar data
 
   ```js
   // let users = ["anis", "rabu", "pinky"];
@@ -251,4 +252,20 @@ x = [10, 20]; // Not correct
   // multi-types array
   // let users: (number | string)[];
   // users = [10, "anis", 25, 35, "islam"];
+  ```
+
+  #### 5.3 Tuple Type
+
+- Tuple Type - Mixed data type
+
+  ```js
+  let users: [number, String];
+  users = [101, "anis"];
+
+  console.log(users);
+  console.log(users[0]);
+  console.log(users[1]);
+
+  users.push(102, "sakib");
+  console.log(users);
   ```
