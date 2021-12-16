@@ -17,6 +17,7 @@ Chapters:
    - Array type
    - tuple type
    - enum type
+   - any type
 
 ### 1. Introduction
 
@@ -310,4 +311,13 @@ x = [10, 20]; // Not correct
     name = "anisul",
     }
 
+  ```
+
+  #### 5.5 any Type
+
+- any Type: if you have no knowledge about the variable type use any type: user input values
+
+  ```js
+  let password: any;
+  let passwords: any[];
   ```
