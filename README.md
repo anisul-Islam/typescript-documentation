@@ -21,6 +21,11 @@ Chapters:
    - object type
    - custom type
 
+6. class
+7. inheritance
+8. interface
+9. function overloading
+
 ### 1. Introduction
 
 #### 1.1 What is TypeScript?
@@ -355,22 +360,47 @@ x = [10, 20]; // Not correct
 - custom Type: you can create your own type
 
   ```js
-  type User = { userId: number, userName: string };
+  type User = { userName: string, userId: number };
 
   let users: User[];
   users = [];
 
   let user1: User;
-  user1 = { userId: 101, userName: "anisul islam" };
+  user1 = { userName: "anis", userId: 101 };
   users.push(user1);
 
   let user2: User;
-  user2 = { userId: 102, userName: "rabeya islam" };
+  user2 = { userName: "rabu", userId: 102 };
   users.push(user2);
 
-  console.log(users);
+  let user3: User;
+  user3 = { userName: "lucky", userId: 103 };
+  users.push(user3);
+
+  // console.log(users);
 
   type RequestType = "GET" | "POST";
   let getRequest: RequestType;
-  console.log(getRequest);
+  getRequest = "GET";
+
+  function requestHandler(requestType: RequestType) {
+    console.log(requestType);
+  }
+  requestHandler("GET");
   ```
+
+### 6. class
+
+- class can have constructor, properties, methods
+- create object - let objectName = new className();
+- Example
+
+  ```js
+
+  ```
+
+### 9. Function Overloading
+
+- we can declare multiple methods with same name but paramter types and return type must be different
+
+#### Example
