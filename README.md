@@ -329,21 +329,18 @@ x = [10, 20]; // Not correct
 
   ```js
   let users: object[];
-  users = [{ name: "anisul" }, { name: "rabu" }];
+  users = [];
 
-  // let user1: { userId: number; userName: string };
-  // user1 = { userId: 101, userName: "anisul islam" };
-  // users.push(user1);
+  let user1: { userName: string, userId: number };
+  user1 = { userName: "anis", userId: 101 };
+  users.push(user1);
 
-  // let user2: { userId: number; userName: string };
-  // user2 = { userId: 102, userName: "rabeya islam" };
-  // users.push(user2);
+  let user2: { userName: string, userId: number };
+  user2 = { userName: "rabu", userId: 102 };
 
-  // for (let index = 0; index < users.length; index++) {
-  //   console.log(users[index]["name"]);
-  // }
+  users.push(user2);
 
   for (const key in users) {
-    console.log(users[key]);
+    console.log(users[key]["userName"]);
   }
   ```
