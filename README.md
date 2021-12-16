@@ -7,7 +7,14 @@ Chapters:
 1. Introduction
 2. Environment setup
 3. First Typescript program
-4. Data types
+4. Data Types - built-in
+
+   - number, string, boolean, void, undefined, null
+
+5. Data Types - user-defined
+
+   - union type
+   - Array type
 
 ### 1. Introduction
 
@@ -129,7 +136,7 @@ x = [10, 20]; // Not correct
 - some compiler flag
   - tsc index.js --watch
 
-### 4. data types
+### 4. Built-in data types
 
 - Any (super type)
   - built in types: number, string, boolean, void, null, undefined etc.
@@ -182,7 +189,29 @@ x = [10, 20]; // Not correct
   let userName = "anis"; // data type inferred as string
   ```
 
-### 5. User-defined types - Array
+### 5. User-defined data types
+
+#### 5.1 Union Type
+
+- Union Type - more than one type for variable or function parameter
+
+  ```js
+  let userId: string | number;
+
+  // userId = 101; // no error
+  // userId = "101"; // no error
+  // userId = true; // error
+
+  function userIdDataType(userId: string | number) {
+    console.log(typeof userId);
+  }
+
+  userIdDataType("123"); // no error
+  userIdDataType(123); // no error
+  // userIdDataType(true); // error
+  ```
+
+#### 5.2 Array
 
 - Array Type- similar data type
 
