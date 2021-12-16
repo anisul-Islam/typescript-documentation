@@ -126,3 +126,49 @@ x = [10, 20]; // Not correct
 
 - some compiler flag
   - tsc index.js --watch
+
+### 4. data types
+
+- Any (super type)
+  - built in types: number, string, boolean, void, null, undefined etc.
+  - user-defined types: Arrays, Enums, Classes, interfaces etc.
+- example of built-in types
+
+  ```js
+  // string TYPE EXAMPLE
+  let firstName: string;
+  let lastName: string;
+  let fullName: string;
+  let occupation: string;
+
+  firstName = "Anisul";
+  lastName = " Islam";
+  occupation = "student";
+
+  console.log(firstName);
+  console.log(lastName);
+  console.log(occupation);
+
+  // toUpperCase()
+  console.log(firstName.toUpperCase());
+
+  // toLowerCase()
+  console.log(firstName.toLowerCase());
+
+  // split([separator[,limit]])
+  console.log(fullName.split(" "));
+
+  // concat()
+  fullName = firstName.concat(lastName);
+
+  console.log(`User ${fullName} is a ${occupation}`);
+
+  let userName: string;
+  let id: number;
+  let isLoggedIn: boolean;
+  ```
+
+- inferred Typing
+  ```js
+  let userName = "anis"; // data type inferred as string
+  ```
