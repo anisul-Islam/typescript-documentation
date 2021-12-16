@@ -23,8 +23,8 @@ Chapters:
 
 6. class
 7. inheritance
-8. interface
-9. function overloading
+8. abstract class
+9. interface
 
 ### 1. Introduction
 
@@ -461,8 +461,50 @@ user1.display();
 // user2.display();
 ```
 
-### 9. Function Overloading
+### 8. Abstract class
 
-- we can declare multiple methods with same name but paramter types and return type must be different
+- class declared with abstract keyword
+- object can not be created from abstract class
+- if a class extends abstract class; it must inherit all the abstract methods
+- example
+
+  ```js
+      abstract class User {
+      userName: string;
+      age: number;
+
+      constructor(userName: string, age: number) {
+        this.userName = userName;
+        this.age = age;
+      }
+
+      abstract display(): void;
+    }
+
+    class Student extends User {
+      studentId: number;
+
+      constructor(userName: string, age: number, studentId: number) {
+        super(userName, age);
+        this.studentId = studentId;
+      }
+      display(): void {
+        console.log(
+          `username: ${this.userName}, age: ${this.age}, id: ${this.studentId}`
+        );
+      }
+    }
+
+    let student1 = new Student("keya", 31, 1302020015);
+    student1.display();
+
+    // let user2 = new User("Rabeya Islam", 31);
+    // user2.display();
+
+  ```
+
+### 9. Interface
+
+- interface
 
 #### Example
