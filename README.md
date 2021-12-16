@@ -22,9 +22,12 @@ Chapters:
    - custom type
 
 6. class
-7. inheritance
-8. abstract class
-9. interface
+
+   - class basic, object
+   - inheritance
+   - abstract class
+
+7. interface
 
 ### 1. Introduction
 
@@ -391,6 +394,8 @@ x = [10, 20]; // Not correct
 
 ### 6. class
 
+#### 6.1 class basics and objects
+
 - class can have constructor, properties, methods
 - create object - let objectName = new className();
 - Example
@@ -418,7 +423,7 @@ x = [10, 20]; // Not correct
   user2.display();
   ```
 
-### 7. Inheritance
+#### 6.2 Inheritance
 
 - inheritance helps us to acquire properties of one class to another
 
@@ -461,7 +466,7 @@ user1.display();
 // user2.display();
 ```
 
-### 8. Abstract class
+#### 6.3 Abstract class
 
 - class declared with abstract keyword
 - object can not be created from abstract class
