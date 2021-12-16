@@ -19,6 +19,7 @@ Chapters:
    - enum type
    - any type
    - object type
+   - custom type
 
 ### 1. Introduction
 
@@ -347,4 +348,29 @@ x = [10, 20]; // Not correct
   for (const key in users) {
     console.log(users[key]["userName"]);
   }
+  ```
+
+#### 5.7 Custom Type
+
+- custom Type: you can create your own type
+
+  ```js
+  type User = { userId: number, userName: string };
+
+  let users: User[];
+  users = [];
+
+  let user1: User;
+  user1 = { userId: 101, userName: "anisul islam" };
+  users.push(user1);
+
+  let user2: User;
+  user2 = { userId: 102, userName: "rabeya islam" };
+  users.push(user2);
+
+  console.log(users);
+
+  type RequestType = "GET" | "POST";
+  let getRequest: RequestType;
+  console.log(getRequest);
   ```
