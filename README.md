@@ -29,6 +29,11 @@ Chapters:
    - Encapsulation and access modifiers
 
 7. interface
+8. Generic
+9. Module- export, import
+10. typescript configuration
+11. Build tools
+12. convert js project to ts
 
 ### 1. Introduction
 
@@ -508,6 +513,15 @@ user1.display();
   ```
 
 #### 6.4 Encapsulation and access modifiers
+
+- 4 key principles of Object Oriented Programming (OOP): Inheritance, Abstraction, Encapsulation, Polymorphism.
+- Encapsulation helps us to manage the visibility of class members.
+- Access modifiers: public, private, protected, readonly
+- example
+
+  ```js
+
+  ```
 
 ### 7. Interface
 
