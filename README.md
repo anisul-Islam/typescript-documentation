@@ -573,3 +573,83 @@ user1.display();
 - interface
 
 #### Example
+
+### 8. DOM Manipulation with typescript
+
+#### Example
+```html
+   <!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <link rel="stylesheet" href="style.css" />
+  </head>
+  <body>
+    <h1>welcome</h1>
+    <form class="user-form">
+      <div>
+        <label for="username">Username: </label>
+        <input type="text" id="username" />
+      </div>
+      <div>
+        <label for="useremail">email: </label>
+        <input type="email" id="useremail" />
+      </div>
+
+      <div>
+        <label for="country">Country: </label>
+        <select name="country" id="country">
+          <option value="bangladesh">bangladesh</option>
+          <option value="india">india</option>
+        </select>
+      </div>
+
+      <div>
+        <label for="feedback">feedback: </label>
+        <textarea name="feedback" id="feedback" cols="30" rows="5"></textarea>
+      </div>
+      <button type="submit">save</button>
+    </form>
+    <script src="../dist/index.js"></script>
+  </body>
+</html>
+
+```
+
+```ts
+   const form = document.querySelector(".user-form") as HTMLFormElement;
+console.log(form);
+
+const userNameInput = document.querySelector("#username") as HTMLInputElement;
+console.log(userNameInput);
+
+const userEmailInput = document.querySelector("#useremail") as HTMLInputElement;
+console.log(userEmailInput);
+
+const userCountrySelect = document.querySelector(
+  "#country"
+) as HTMLSelectElement;
+console.log(userCountrySelect);
+
+const userFeedback = document.querySelector("#feedback") as HTMLTextAreaElement;
+console.log(userFeedback);
+
+form.addEventListener("submit", (e: Event) => {
+  e.preventDefault();
+  let userData = {
+    userName: userNameInput.value,
+    userEmail: userEmailInput.value,
+    userCountry: userCountrySelect.value,
+    userFeedback: userFeedback.value,
+  };
+  console.log(userData);
+});
+
+
+```
+
+
+
