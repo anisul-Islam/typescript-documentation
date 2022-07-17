@@ -574,7 +574,32 @@ user1.display();
 
 #### Example
 
-### 8. DOM Manipulation with typescript
+### 8. tsconfig
+
+- create src, public folder 
+- Inside public folder create index.html, style.css and inside src folder create index.ts or other ts files
+- in terminal -> tsc --init 
+- edit tsconfig.json as shown in the following example
+   ```json
+      {
+        "compilerOptions": {
+          "target": "es5",
+          "module": "commonjs",
+          "rootDir": "./src",
+          "outDir": "./public",
+          "strict": true,
+          "noUnusedLocals": true,
+          "noUnusedParameters": true
+        },
+        "include": ["./src"],
+        "files": ["./src/index.ts", "./src/app.ts"]
+      }
+
+   ```
+
+#### Example
+
+### 9. DOM Manipulation with typescript
 
 #### Example
 ```html
