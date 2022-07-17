@@ -698,7 +698,7 @@ user1.display();
       console.log(userInfo3("Anisul Islam"));
    ```
 
-### 11. DOM Manipulation with typescript
+### 10. DOM Manipulation with typescript
 
 #### Example
 ```html
