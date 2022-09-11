@@ -2,48 +2,15 @@
 
 - prerequisities: Javascript
 
-Chapters:
+## 1. Introduction
 
-1. Introduction
-2. Environment setup
-3. First Typescript program
-4. Data Types - built-in
-
-   - number, string, boolean, void, undefined, null
-
-5. Data Types - user-defined
-
-   - union type
-   - Array type
-   - tuple type
-   - enum type
-   - any type
-   - object type
-   - custom type
-
-6. class
-
-   - class basic, object
-   - inheritance
-   - abstract class
-   - Encapsulation and access modifiers
-
-7. interface
-8. Generic
-9. Module- export, import
-10. typescript configuration
-11. Build tools
-12. convert js project to ts
-
-### 1. Introduction
-
-#### 1.1 What is TypeScript?
+### 1.1 What is TypeScript?
 
 - In a simple words, Types + JavaScript = TypeScript
 - It is a superset of JS
 - developed and maintained by Microsoft
 
-#### 1.2 Why TypeScript?
+### 1.2 Why TypeScript?
 
 - JS Check types in run time while typescript add static typing to JS so we can handle errors before running the program.
 - increase readability and code quality
@@ -51,7 +18,7 @@ Chapters:
 - It can be used in both: client and server side.
 - Intellisense IDE Support while coding: code completion, content assist and code hinting
 
-#### 1.3 TS Versions
+### 1.3 TS Versions
 
 - earlier versions
 - TypeScript 1.0 October 2014
@@ -59,7 +26,7 @@ Chapters:
 - TypeScript 3.0 July 2018
 - TypeScript 4.0 - latest release August 2020
 
-#### 1.4 Example:
+### 1.4 Example:
 
 ```js
 // index.js
@@ -95,17 +62,19 @@ x = true; // Not correct
 x = [10, 20]; // Not correct
 ```
 
-### 2. Environment setup
+## 2. Environment setup
 
-#### 2.1 Install and use typescript
+### 2.1 Install and use typescript
 
 - Text Editor: VS Code
 - Install node & typescript
-  ```js
-     npm intsall typescript --save-dev (local)
-     npm install -g typescript (global)
-     npx tsc fileName.ts
-  ```
+
+```js
+     local installation: npm intsall typescript --save-dev
+     Or
+     global installation: npm install -g typescript
+```
+
 - check various versions:
 
   ```js
@@ -114,13 +83,13 @@ x = [10, 20]; // Not correct
     tsc --version
   ```
 
-#### 2.2 How does it work?
+### 2.2 How does it work?
 
 - index.ts -> tsc index.ts -> index.js
 
-### 3. First typescript program
+## 3. First typescript program
 
-#### 3.1 Example
+### 3.1 Example
 
 - typescript file extension is .ts
 - Run the following program using `tsc index.ts` command and then `node index.js`
@@ -155,11 +124,13 @@ x = [10, 20]; // Not correct
 - some compiler flag
   - tsc index.js --watch
 
-### 4. Built-in data types
+## 4. Built-in data types
 
 - Any (super type)
   - built in types: number, string, boolean, void, null, undefined etc.
   - user-defined types: Arrays, Enums, Classes, interfaces etc.
+  - for avoiding typescript in entire file:
+    `// @ts-nocheck`
 - example of built-in types
 
   ```js
@@ -201,16 +172,28 @@ x = [10, 20]; // Not correct
     console.log("Hi I am display");
   }
   display();
+
+  // optional properties and undefined type
+  const printFullName = (firstName: string, lastName?: string) => {
+    const fullName = firstName + lastName;
+    if (lastName !== undefined) {
+      console.log(fullName);
+    }
+  };
+
+  printFullName("Anisul", " Islam");
+  printFullName("Anisul");
   ```
 
 - inferred Typing
-  ```js
-  let userName = "anis"; // data type inferred as string
-  ```
 
-### 5. User-defined data types
+```js
+let userName = "anis"; // data type inferred as string
+```
 
-#### 5.1 Union Type
+## 5. User-defined data types
+
+### 5.1 Union Type
 
 - Union Type - more than one type for variable or function parameter
 
@@ -230,7 +213,7 @@ x = [10, 20]; // Not correct
   // userIdDataType(true); // error
   ```
 
-#### 5.2 Array
+### 5.2 Array
 
 - Array Type- similar data
 
@@ -272,7 +255,7 @@ x = [10, 20]; // Not correct
   // users = [10, "anis", 25, 35, "islam"];
   ```
 
-  #### 5.3 Tuple Type
+### 5.3 Tuple Type
 
 - Tuple Type - Mixed data type
 
@@ -288,7 +271,7 @@ x = [10, 20]; // Not correct
   console.log(users);
   ```
 
-  #### 5.4 Enum Type
+### 5.4 Enum Type
 
 - Enum Type: no duplicate data, helps to store constants
 
@@ -329,7 +312,7 @@ x = [10, 20]; // Not correct
 
   ```
 
-  #### 5.5 any Type
+### 5.5 any Type
 
 - any Type: if you have no knowledge about the variable type use any type: user input values
 
@@ -338,7 +321,7 @@ x = [10, 20]; // Not correct
   let passwords: any[];
   ```
 
-  #### 5.6 object Type
+### 5.6 object Type
 
 - object Type: can store value as key value pair
 
@@ -364,7 +347,7 @@ x = [10, 20]; // Not correct
   }
   ```
 
-#### 5.7 Custom Type
+### 5.7 Custom Type
 
 - custom Type: you can create your own type
 
@@ -398,9 +381,9 @@ x = [10, 20]; // Not correct
   requestHandler("GET");
   ```
 
-### 6. class
+## 6. class
 
-#### 6.1 class basics and objects
+### 6.1 class basics and objects
 
 - class can have constructor, properties, methods
 - create object - let objectName = new className();
@@ -429,7 +412,7 @@ x = [10, 20]; // Not correct
   user2.display();
   ```
 
-#### 6.2 Inheritance
+### 6.2 Inheritance
 
 - inheritance helps us to acquire properties of one class to another
 
@@ -472,7 +455,7 @@ user1.display();
 // user2.display();
 ```
 
-#### 6.3 Abstract class
+### 6.3 Abstract class
 
 - abstraction helps us to hide the implementation of something
 - class declared with abstract keyword
@@ -512,7 +495,7 @@ user1.display();
 
   ```
 
-#### 6.4 Encapsulation and access modifiers
+### 6.4 Encapsulation and access modifiers
 
 - 4 key principles of Object Oriented Programming (OOP): Inheritance, Abstraction, Encapsulation, Polymorphism.
 - Encapsulation helps us to manage the visibility of class members.
@@ -568,141 +551,347 @@ user1.display();
 
   ```
 
-### 7. Interface
+## 7. Interface
 
 - interface
 
-#### Example 1
-   ```js
-      // without interface
-      let users: {
-        id: number;
-        name: string;
-        age: number;
-      }[] = [];
+### Example 1
 
-      let user1: {
-        id: number;
-        name: string;
-        age: number;
-      } = {
-        id: 1,
-        name: "Mr. Potato",
-        age: 32,
+```js
+// without interface
+let users: {
+  id: number,
+  name: string,
+  age: number,
+}[] = [];
+
+let user1: {
+  id: number,
+  name: string,
+  age: number,
+} = {
+  id: 1,
+  name: "Mr. Potato",
+  age: 32,
+};
+
+let user2: {
+  id: number,
+  name: string,
+  age: number,
+} = { id: 2, name: "Ms. Tomato", age: 21 };
+
+users.push(user1);
+users.push(user2);
+
+const printUserInfo = (user: { id: number, name: string, age: number }) => {
+  console.log(`userid = ${user.id}, name = ${user.name}, age = ${user.age}`);
+};
+
+users.forEach((user) => printUserInfo(user));
+
+// with interface
+interface User {
+  id: number;
+  name: string;
+  age: number;
+}
+
+let users: User[] = [];
+
+let user1: User = { id: 1, name: "Mr. Potato", age: 32 };
+let user2: User = { id: 2, name: "Ms. Tomato", age: 21 };
+
+users.push(user1);
+users.push(user2);
+
+const printUserInfo = (user: User) => {
+  console.log(`userid = ${user.id}, name = ${user.name}, age = ${user.age}`);
+};
+
+users.forEach((user) => printUserInfo(user));
+```
+
+### Example 2
+
+````js
+  // class implements interface
+  interface UserFormatter {
+    formatUser: () => string;
+  }
+
+    export class User implements UserFormatter {
+      constructor(private fullName: string, private age: number) {}
+
+      formatUser = () => {
+        return `name: ${this.fullName}, age: ${this.age}`;
       };
+    }
 
-      let user2: {
-        id: number;
-        name: string;
-        age: number;
-      } = { id: 2, name: "Ms. Tomato", age: 21 };
+    let user = new User("Mr. Potato", 32);
+    console.log(user);
+    console.log(user.formatUser());
+  ```
 
-      users.push(user1);
-      users.push(user2);
+## 8. Interface vs type
 
-      const printUserInfo = (user: { id: number; name: string; age: number }) => {
-        console.log(`userid = ${user.id}, name = ${user.name}, age = ${user.age}`);
-      };
+- both are nearly similar in most cases.
+- However, Adding new filed after creation is possible for an interface but not possible for a type.
 
-      users.forEach((user) => printUserInfo(user));
+### Example 1
 
-      
-      // with interface
-      interface User {
-        id: number;
-        name: string;
-        age: number;
-      }
+```
+    interface Color {
+      title: string;
+    }
+    interface Color {
+      text: string;
+    }
+    // now class A has access to title and string
+    class A implements Color {
+      title: string;
+      text: string;
+    }
+```
+- both can be extended
+### Example 2
 
-      let users: User[] = [];
+```
+interface IFUser {
+  name: string;
+}
 
-      let user1: User = { id: 1, name: "Mr. Potato", age: 32 };
-      let user2: User = { id: 2, name: "Ms. Tomato", age: 21 };
+interface IFStudent extends IFUser {
+  student_id: string;
+}
 
-      users.push(user1);
-      users.push(user2);
+// Extending a type via intersections
+type User = {
+  name: string;
+};
 
-      const printUserInfo = (user: User) => {
-        console.log(`userid = ${user.id}, name = ${user.name}, age = ${user.age}`);
-      };
+type Student = User & {
+  student_id: string;
+};
 
-      users.forEach((user) => printUserInfo(user));
+let s1: Student;
+s1 = {
+  name: "anisul islam",
+  student_id: "1302",
+};
+```
 
-   ```
-   
-#### Example 2
-     ```js
-         // class implements interface
-         interface UserFormatter {
-           formatUser: () => string;
-         }
+### Example 3
 
-         export class User implements UserFormatter {
-           constructor(private fullName: string, private age: number) {}
+```
+interface IFUser {
+  name: string;
+}
 
-           formatUser = () => {
-             return `name: ${this.fullName}, age: ${this.age}`;
-           };
-         }
+interface IFStudent extends IFUser {
+  student_id: string;
+}
 
-         let user = new User("Mr. Potato", 32);
-         console.log(user);
-         console.log(user.formatUser());
-     ```
+class Student implements IFStudent {
+  name: string;
+  student_id: string;
 
-### 8. tsconfig
+  constructor(name, student_id) {
+    this.name = name;
+    this.student_id = student_id;
+  }
 
-- create src, public folder 
+  printDetails = () => {
+    return `${this.name}, ${this.student_id}`;
+  };
+}
+
+const s1 = new Student("anisul islam", "1302020017");
+console.log(s1.printDetails());
+
+```
+
+## 9. tsconfig
+
+- create src, public folder
 - Inside public folder create index.html, style.css and inside src folder create index.ts or other ts files
-- in terminal -> tsc --init 
+- in terminal -> tsc --init
 - edit tsconfig.json as shown in the following example
-   ```json
-      {
-        "compilerOptions": {
-          "target": "es5",
-          "module": "commonjs",
-          "rootDir": "./src",
-          "outDir": "./public",
-          "strict": true,
-          "noUnusedLocals": true,
-          "noUnusedParameters": true
-        },
-        "include": ["./src"],
-        "files": ["./src/index.ts", "./src/app.ts"]
-      }
 
-   ```
+```
+{
+  "compilerOptions": {
+    "target": "es5",
+    "module": "commonjs",
+    "rootDir": "./src",
+    "outDir": "./public",
+    "strict": true,
+    "noUnusedLocals": true,
+    "noUnusedParameters": true
+  },
+  "include": ["./src"],
+  "files": ["./src/index.ts", "./src/app.ts"]
+}
+````
 
-### 9. function signature
+## 10. function signature
+
 - example
-   ```js
-      // function signature
-      let userInfo1: () => void;
-      let userInfo2: (name: string) => void;
-      let userInfo3: (name: string) => string;
 
-      userInfo1 = () => {
-        console.log("Anisul Islam is 32 years old");
-      };
+  ```js
+  // function signature
+  let userInfo1: () => void;
+  let userInfo2: (name: string) => void;
+  let userInfo3: (name: string) => string;
 
-      userInfo2 = (name: string) => {
-        console.log(`${name} is 32 years old`);
-      };
+  userInfo1 = () => {
+    console.log("Anisul Islam is 32 years old");
+  };
 
-      userInfo3 = (name: string): string => {
-        return `${name} is 32 years old`;
-      };
+  userInfo2 = (name: string) => {
+    console.log(`${name} is 32 years old`);
+  };
 
-      userInfo1();
-      userInfo2("Anisul Islam");
-      console.log(userInfo3("Anisul Islam"));
-   ```
+  userInfo3 = (name: string): string => {
+    return `${name} is 32 years old`;
+  };
 
-### 10. DOM Manipulation with typescript
+  userInfo1();
+  userInfo2("Anisul Islam");
+  console.log(userInfo3("Anisul Islam"));
+  ```
 
-#### Example
+## 11. Creating types from types
+
+### Generics Example -
+
+```js
+// make components reusable
+// make components flexible
+// C# and java have this generic feature
+// generic allows us to create own types
+
+const displayValue1 = (x) => {
+  return x;
+};
+// no auto suggestion for any type
+// displayValue1(20).;
+
+const displayValue2 = <T>(x: T): T => {
+  return x;
+};
+// now we will have auto suggestion
+// displayValue2(20).
+
+const addBefore = <T1>(numbers: T1[], x: T1) => {
+  return [x, ...numbers];
+};
+
+let numbers = [20, 30, 40];
+console.log(addBefore(numbers, 10));
+
+let countries = ["bangladesh", "pakistan", "India"];
+console.log(addBefore(countries, "Australia"));
+```
+
+### keyof type Example -
+
+### typeof type Example -
+
+```js
+let firstName: string;
+let lastName: typeof firstName;
+```
+
+### Conditional type Example -
+
+```js
+interface Animal {
+  live(): void;
+}
+interface Dog extends Animal {
+  woof(): void;
+}
+
+type Example1 = Dog extends Animal ? number : string;
+
+type Example1 = number
+
+type Example2 = RegExp extends Animal ? number : string;
+
+type Example2 = string
+```
+
+## 12. Narrowing
+
+### Type guards Example
+
+```js
+// type guards with typeof
+// typeof variable === string/number/boolean/symbol/undefined/object/function
+const printAllTodos = (todos: string[] | null) => {
+  if (typeof todos === "object") {
+    todos.map((todo) => console.log(todo));
+  } else {
+    console.log("todos are empty");
+  }
+};
+```
+
+### Truthiness narrowing Example
+
+```js
+// false -> 0,NaN,"" (the empty string), 0n (the bigint version of zero), null, undefined
+const printAllTodos = (todos: string[] | null) => {
+  if (todos) {
+    todos.map((todo) => console.log(todo));
+  } else {
+    console.log("todos are empty");
+  }
+};
+
+const todos1 = null;
+const todos2 = ["todo1", "todo2", "todo3"];
+printAllTodos(todos1);
+printAllTodos(todos2);
+```
+
+### Equality narrowing Example
+
+```js
+// == , ===, !=, !=== helps to narrow types
+```
+
+## 13. DOM Manipulation with typescript
+
+### Example1
+
 ```html
-   <!DOCTYPE html>
+<body>
+  <input type="number" class="input1" placeholder="Enter any number" />
+  <input type="number" class="input2" placeholder="Enter any number" />
+  <button>Add</button>
+  <p></p>
+  <script src="./index.js"></script>
+</body>
+```
+
+```js
+const number1 = document.querySelector(".input1") as HTMLInputElement;
+const number2 = document.querySelector(".input2") as HTMLInputElement;
+const addButton = document.querySelector("button")!;
+const result = document.querySelector("p")!;
+
+addButton?.addEventListener("click", () => {
+  const sum = Number(number1.value) + Number(number2.value);
+  result.textContent = `The result is ${sum}`;
+});
+```
+
+### Example2
+
+```html
+<!DOCTYPE html>
 <html lang="en">
   <head>
     <meta charset="UTF-8" />
@@ -740,11 +929,10 @@ user1.display();
     <script src="../dist/index.js"></script>
   </body>
 </html>
-
 ```
 
 ```ts
-   const form = document.querySelector(".user-form") as HTMLFormElement;
+const form = document.querySelector(".user-form") as HTMLFormElement;
 console.log(form);
 
 const userNameInput = document.querySelector("#username") as HTMLInputElement;
@@ -771,9 +959,4 @@ form.addEventListener("submit", (e: Event) => {
   };
   console.log(userData);
 });
-
-
 ```
-
-
-
