@@ -70,7 +70,7 @@ x = [10, 20]; // Not correct
 - Install node & typescript
 
 ```js
-     local installation: npm intsall typescript --save-dev
+     local installation: npm install typescript --save-dev
      Or
      global installation: npm install -g typescript
 ```
