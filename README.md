@@ -9,6 +9,7 @@
 - In a simple words, Types + JavaScript = TypeScript
 - It is a superset of JS
 - developed and maintained by Microsoft
+- we can use typeof to check data type
 
 ### 1.2 Why TypeScript?
 
@@ -211,6 +212,19 @@ let userName = "anis"; // data type inferred as string
   userIdDataType("123"); // no error
   userIdDataType(123); // no error
   // userIdDataType(true); // error
+
+  const isEven = (num: number | string) => {
+    if (typeof num === "number") {
+      console.log(typeof num);
+      return num % 2 === 0 ? "even" : "odd";
+    } else {
+      console.log(typeof num);
+      return Number(num) % 2 === 0 ? "even" : "odd";
+    }
+  };
+
+  console.log(isEven(32));
+  console.log(isEven("32"));
   ```
 
 ### 5.2 Array
