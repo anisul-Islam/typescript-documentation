@@ -806,6 +806,15 @@ console.log(addBefore(numbers, 10));
 
 let countries = ["bangladesh", "pakistan", "India"];
 console.log(addBefore(countries, "Australia"));
+
+// Another example
+const printUserInfo = <X, Y>(userId: X, userAge: Y) => {
+  console.log(`ID : ${userId}, Age: ${userAge}`);
+};
+printUserInfo("101", 32);
+printUserInfo(101, 32);
+printUserInfo(101, "32");
+printUserInfo("101", "32");
 ```
 
 ### keyof type Example -
