@@ -2,24 +2,37 @@
 
 - prerequisities: Javascript
 
-## 1. Introduction
+## Table of Contents
 
-### 1.1 What is TypeScript?
+1. [Basic Typescript Topics](#1-basic-typescript-topics)
+   [1.1 Introduction to Typescript](#11-introduction-to-typescript)
+   [1.2 Data Types: Built-in / Basic Types](#12-data-types-built-in--basic-types)
+   [1.3 Data Types: User defined types](#13-data-types-user-defined)
+
+2. [Intermediate TypeScript Topics]()
+
+3. [Advanced TypeScript Topics]()
+
+## 1. Basic Typescript Topics
+
+## 1.1 Introduction to Typescript
+
+What is TypeScript?
 
 - In a simple words, Types + JavaScript = TypeScript
 - It is a superset of JS
 - developed and maintained by Microsoft
 - we can use typeof to check data type
 
-### 1.2 Why TypeScript?
+Why TypeScript?
 
-- JS Check types in run time while typescript add static typing to JS so we can handle errors before running the program.
+- JS Check types in run time while typescript add static typing to JS so we can handle errors before running the program. We can handle errors beofre running the program.
 - increase readability and code quality
-- popular JS libraray Angular use TypeScript.
+- We can use it React, Vue, popular JS libraray Angular use TypeScript.
 - It can be used in both: client and server side.
 - Intellisense IDE Support while coding: code completion, content assist and code hinting
 
-### 1.3 TS Versions
+TS Versions
 
 - earlier versions
 - TypeScript 1.0 October 2014
@@ -27,7 +40,7 @@
 - TypeScript 3.0 July 2018
 - TypeScript 4.0 - latest release August 2020
 
-### 1.4 Example:
+Code Example of Javascript and TypeScript
 
 ```js
 // index.js
@@ -37,7 +50,7 @@ function addNumbers(num1, num2) {
 }
 
 addNumbers(20, 30);
-addNumbers(20, "30");
+addNumbers(20, '30');
 
 // with typescript
 // without typescript
@@ -46,35 +59,36 @@ function addNumbers(num1: number, num2: number) {
 }
 
 addNumbers(20, 30); // no error
-addNumbers(20, "30"); // error
+addNumbers(20, '30'); // error
 
 // without typescript
 let x;
 x = 20; // correct
-x = "anisul"; // correct
+x = 'anisul'; // correct
 x = true; // correct
 x = [10, 20]; // correct
 
 // with typescript
 let x: number;
 x = 20; // correct
-x = "20"; // Not correct
+x = '20'; // Not correct
 x = true; // Not correct
 x = [10, 20]; // Not correct
 ```
 
-## 2. Environment setup
+How does typescript work?
 
-### 2.1 Install and use typescript
+- index.ts -> tsc index.ts -> index.js
 
-- Text Editor: VS Code
+Environment setup
+
 - Install node & typescript
 
-```js
-     local installation: npm intsall typescript --save-dev
-     Or
-     global installation: npm install -g typescript
-```
+  ```js
+      local installation: npm intsall typescript --save-dev
+      Or
+      global installation: npm install -g typescript
+  ```
 
 - check various versions:
 
@@ -84,16 +98,10 @@ x = [10, 20]; // Not correct
     tsc --version
   ```
 
-### 2.2 How does it work?
-
-- index.ts -> tsc index.ts -> index.js
-
-## 3. First typescript program
-
-### 3.1 Example
+First typescript program
 
 - typescript file extension is .ts
-- Run the following program using `tsc index.ts` command and then `node index.js`
+- Run the following program using `tsc index.ts --watch` command and then `node index.js`
 
   ```js
   // index.ts
@@ -122,280 +130,320 @@ x = [10, 20]; // Not correct
   name. //intellisense support will be here
   ```
 
-- some compiler flag
-  - tsc index.js --watch
-
-## 4. Built-in data types
+## 1.2 Data Types: Built-in / Basic Types
 
 - Any (super type)
-  - built in types: number, string, boolean, void, null, undefined etc.
+  - built in types: number, string, boolean, void, null, undefined, never
   - user-defined types: Arrays, Enums, Classes, interfaces etc.
   - for avoiding typescript in entire file:
     `// @ts-nocheck`
-- example of built-in types
 
-  ```js
-  // string TYPE EXAMPLE
-  let firstName: string;
-  let lastName: string;
-  let fullName: string;
-  let occupation: string;
+In TypeScript, you can use basic types to specify the type of variables, function parameters, and return values. Here are some of the basic types in TypeScript:
 
-  firstName = "Anisul";
-  lastName = " Islam";
-  occupation = "student";
+1. **number**: Represents both integer and floating-point numbers.
 
-  console.log(firstName);
-  console.log(lastName);
-  console.log(occupation);
+   ```typescript
+   let age: number = 25;
+   let price: number = 9.99;
+   ```
 
-  // toUpperCase()
-  console.log(firstName.toUpperCase());
+2. **string**: Represents a sequence of characters.
 
-  // toLowerCase()
-  console.log(firstName.toLowerCase());
+   ```typescript
+   let name: string = 'John';
+   ```
 
-  // split([separator[,limit]])
-  console.log(fullName.split(" "));
+3. **boolean**: Represents a true or false value.
 
-  // concat()
-  fullName = firstName.concat(lastName);
+   ```typescript
+   let isDone: boolean = false;
+   ```
 
-  console.log(`User ${fullName} is a ${occupation}`);
+4. **any**: Represents a dynamic or untyped value. Avoid using this when possible, as it bypasses type checking. if you have no knowledge about the variable type use any type: user input values
 
-  let userName: string;
-  let id: number;
-  let isLoggedIn: boolean;
+   ```typescript
+   let data: any = 42;
+   data = 'Hello';
 
-  console.log(userId.toLowerCase()); // error here
+   let password: any;
+   let passwords: any[];
+   ```
 
-  function display(): void {
-    console.log("Hi I am display");
-  }
-  display();
+5. **void**: Represents the absence of a value, typically used as the return type of functions that don't return anything.
 
-  // optional properties and undefined type
-  const printFullName = (firstName: string, lastName?: string) => {
-    const fullName = firstName + lastName;
-    if (lastName !== undefined) {
-      console.log(fullName);
-    }
-  };
+   ```typescript
+   function logMessage(): void {
+     console.log('This is a log message.');
+   }
+   ```
 
-  printFullName("Anisul", " Islam");
-  printFullName("Anisul");
-  ```
+6. **null** and **undefined**: Represent null and undefined values, respectively.
+
+   ```typescript
+   let n: null = null;
+   let u: undefined = undefined;
+   ```
+
+7. **never**: Represents a value that never occurs, such as a function that throws an error or an infinite loop.
+
+   ```typescript
+   function throwError(message: string): never {
+     throw new Error(message);
+   }
+   ```
+
+These basic types provide a foundation for specifying the types of variables and data in TypeScript. You can use them to ensure type safety in your code and catch type-related errors at compile time.
 
 - inferred Typing
 
-```js
-let userName = "anis"; // data type inferred as string
-```
-
-## 5. User-defined data types
-
-### 5.1 Union Type
-
-- Union Type - more than one type for variable or function parameter
-
   ```js
-  let userId: string | number;
-
-  // userId = 101; // no error
-  // userId = "101"; // no error
-  // userId = true; // error
-
-  function userIdDataType(userId: string | number) {
-    console.log(typeof userId);
-  }
-
-  userIdDataType("123"); // no error
-  userIdDataType(123); // no error
-  // userIdDataType(true); // error
-
-  const isEven = (num: number | string) => {
-    if (typeof num === "number") {
-      console.log(typeof num);
-      return num % 2 === 0 ? "even" : "odd";
-    } else {
-      console.log(typeof num);
-      return Number(num) % 2 === 0 ? "even" : "odd";
-    }
-  };
-
-  console.log(isEven(32));
-  console.log(isEven("32"));
+  let userName = 'anis'; // data type inferred as string
   ```
 
-### 5.2 Array
+## 1.3 Data Types: User defined
 
-- Array Type- similar data
+1. **union**: Union Type - more than one type for variable or function parameter. Program - odd/even for number and string to give idea about this union concept.
 
-  ```js
-  // let users = ["anis", "rabu", "pinky"];
+   ```js
+   let userId: string | number;
 
-  // let users: string[];
-  // users = ["anis", "rabu", "pinky"];
+   // userId = 101; // no error
+   // userId = "101"; // no error
+   // userId = true; // error
 
-  let users: Array<string>;
-  users = ["anis", "rabu", "pinky"];
+   function userIdDataType(userId: string | number) {
+     console.log(typeof userId);
+   }
 
-  // for (let index = 0; index < users.length; index++) {
-  //   const element = users[index];
-  //   console.log(element);
-  // }
+   userIdDataType('123'); // no error
+   userIdDataType(123); // no error
+   // userIdDataType(true); // error
 
-  // users.forEach((element) => {
-  //   console.log(element);
-  // });
+   const isEven = (num: number | string) => {
+     if (typeof num === 'number') {
+       console.log(typeof num);
+       return num % 2 === 0 ? 'even' : 'odd';
+     } else {
+       console.log(typeof num);
+       return Number(num) % 2 === 0 ? 'even' : 'odd';
+     }
+   };
 
-  users.sort();
-  console.log(users);
+   console.log(isEven(32));
+   console.log(isEven('32'));
+   ```
 
-  users.push("limon");
-  console.log(users);
+2. **object**: Represents any non-primitive value.
 
-  users.pop();
-  console.log(users);
+   ```typescript
+   let person: object = { name: 'Alice', age: 30 };
 
-  users.unshift("milton");
-  console.log(users);
+   let user: {
+     name: string;
+     age: number;
+   };
 
-  users.shift();
-  console.log(users);
+   user = {
+     name: 'anisul islam',
+     age: 32,
+   };
 
-  // multi-types array
-  // let users: (number | string)[];
-  // users = [10, "anis", 25, 35, "islam"];
-  ```
+   let names: object;
+   names = { name1: 'anis' };
+   console.log(names);
 
-### 5.3 Tuple Type
+   let users: object[];
+   users = [];
 
-- Tuple Type - Mixed data type
+   let user1: { userName: string; userId: number };
+   user1 = { userName: 'anis', userId: 101 };
+   users.push(user1);
 
-  ```js
-  let users: [number, String];
-  users = [101, "anis"];
+   let user2: { userName: string; userId: number };
+   user2 = { userName: 'rabu', userId: 102 };
 
-  console.log(users);
-  console.log(users[0]);
-  console.log(users[1]);
+   users.push(user2);
 
-  users.push(102, "sakib");
-  console.log(users);
-  ```
+   for (const key in users) {
+     console.log(users[key]['userName']);
+   }
+   ```
 
-### 5.4 Enum Type
+3. **array**: Represents an array of values of a specific type. 2 ways to declare: `number[]` or `Array<number>`
 
-- Enum Type: no duplicate data, helps to store constants
+   ```typescript
+   let numbers: number[] = [1, 2, 3, 4, 5];
 
-  ```js
-  // enum example
-  // helps us to store constants
+   // let users = ["anis", "rabu", "pinky"];
 
-  // numeric enum
-  enum UserRequest {
-    ReadData,
-    // ReadData = 2,
-    SaveData,
-    UpdateData,
-  }
+   // let users: string[];
+   // users = ["anis", "rabu", "pinky"];
 
-  console.log(UserRequest);
-  console.log(UserRequest.ReadData);
-  console.log(UserRequest.SaveData);
+   let users: Array<string>;
+   users = ['anis', 'rabu', 'pinky'];
 
-  // string enum
-  enum UserRequest {
-    ReadData = "READ_DATA",
-    // ReadData = 2,
-    SaveData = "SAVE_DATA",
-    UpdateData = "UPDATE_DATA",
-  }
+   // for (let index = 0; index < users.length; index++) {
+   //   const element = users[index];
+   //   console.log(element);
+   // }
 
-  console.log(UserRequest);
-  console.log(UserRequest.ReadData);
-  console.log(UserRequest.SaveData);
-  console.log(UserRequest["UpdateData"]);
+   // users.forEach((element) => {
+   //   console.log(element);
+   // });
 
-  // Heterogeneous enum
-    enum User {
-    id = 101,
-    name = "anisul",
-    }
+   users.sort();
+   console.log(users);
 
-  ```
+   users.push('limon');
+   console.log(users);
 
-### 5.5 any Type
+   users.pop();
+   console.log(users);
 
-- any Type: if you have no knowledge about the variable type use any type: user input values
+   users.unshift('milton');
+   console.log(users);
 
-  ```js
-  let password: any;
-  let passwords: any[];
-  ```
+   users.shift();
+   console.log(users);
 
-### 5.6 object Type
+   // multi-types array
+   // let users: (number | string)[];
+   // users = [10, "anis", 25, 35, "islam"];
+   ```
 
-- object Type: can store value as key value pair
+4. **tuple**: Represents an array with a fixed number of elements, each with a specific type.
 
-  ```js
-  let names: object;
-  names = { name1: "anis" };
-  console.log(names);
+   ```typescript
+   let employee: [string, number] = ['John Doe', 30];
 
-  let users: object[];
-  users = [];
+   let users: [number, String];
+   users = [101, 'anis'];
 
-  let user1: { userName: string, userId: number };
-  user1 = { userName: "anis", userId: 101 };
-  users.push(user1);
+   console.log(users);
+   console.log(users[0]);
+   console.log(users[1]);
 
-  let user2: { userName: string, userId: number };
-  user2 = { userName: "rabu", userId: 102 };
+   users.push(102, 'sakib');
+   console.log(users);
+   ```
 
-  users.push(user2);
+5. **enum**: Represents a set of named constants. no duplicate data.
 
-  for (const key in users) {
-    console.log(users[key]["userName"]);
-  }
-  ```
+   ```typescript
+   enum Color {
+     Red,
+     Green,
+     Blue,
+   }
 
-### 5.7 Custom Type
+   let selectedColor: Color = Color.Red;
 
-- custom Type: you can create your own type
+   // enum example
+   // helps us to store constants
 
-  ```js
-  type User = { userName: string, userId: number };
+   // numeric enum
+   enum UserRequest {
+     ReadData,
+     // ReadData = 2,
+     SaveData,
+     UpdateData,
+   }
 
-  let users: User[];
-  users = [];
+   console.log(UserRequest);
+   console.log(UserRequest.ReadData);
+   console.log(UserRequest.SaveData);
 
-  let user1: User;
-  user1 = { userName: "anis", userId: 101 };
-  users.push(user1);
+   // string enum
+   enum UserRequest {
+     ReadData = 'READ_DATA',
+     // ReadData = 2,
+     SaveData = 'SAVE_DATA',
+     UpdateData = 'UPDATE_DATA',
+   }
 
-  let user2: User;
-  user2 = { userName: "rabu", userId: 102 };
-  users.push(user2);
+   console.log(UserRequest);
+   console.log(UserRequest.ReadData);
+   console.log(UserRequest.SaveData);
+   console.log(UserRequest['UpdateData']);
 
-  let user3: User;
-  user3 = { userName: "lucky", userId: 103 };
-  users.push(user3);
+   // Heterogeneous enum
+   enum User {
+     id = 101,
+     name = 'anisul',
+   }
+   ```
 
-  // console.log(users);
+6. **Intersection**: In TypeScript, you can use intersection types to combine multiple types into a single type that has all the properties and methods of each type. Intersection types are created using the `&` operator. Here's an example:
 
-  type RequestType = "GET" | "POST";
-  let getRequest: RequestType;
-  getRequest = "GET";
+   ```typescript
+   // Define two types
+   type Employee = {
+     name: string;
+     role: string;
+   };
 
-  function requestHandler(requestType: RequestType) {
-    console.log(requestType);
-  }
-  requestHandler("GET");
-  ```
+   type Manager = {
+     department: string;
+     employeesManaged: number;
+   };
 
-## 6. class
+   // Create an intersection type
+   type ManagerWithEmployeeInfo = Employee & Manager;
+
+   // Create an object that conforms to the intersection type
+   const manager: ManagerWithEmployeeInfo = {
+     name: 'Alice',
+     role: 'Manager',
+     department: 'HR',
+     employeesManaged: 10,
+   };
+
+   // Access properties
+   console.log(manager.name); // Alice
+   console.log(manager.role); // Manager
+   console.log(manager.department); // HR
+   console.log(manager.employeesManaged); // 10
+   ```
+
+   In this example, we define two types: `Employee` and `Manager`. Then, we create an intersection type called `ManagerWithEmployeeInfo` by combining `Employee` and `Manager` using the `&` operator. The resulting type, `ManagerWithEmployeeInfo`, has all the properties of both `Employee` and `Manager`.
+
+   When we create an object (`manager`) that conforms to the `ManagerWithEmployeeInfo` type, it must have all the properties defined in both `Employee` and `Manager`. This allows us to create objects that have a combination of properties from different types, providing flexibility and type safety.
+
+   Intersection types are especially useful when you want to compose types to represent complex objects or data structures in your TypeScript code.
+
+7. **Custom Type**: you can create your own type
+
+   ```js
+   type User = { userName: string, userId: number };
+
+   let users: User[];
+   users = [];
+
+   let user1: User;
+   user1 = { userName: 'anis', userId: 101 };
+   users.push(user1);
+
+   let user2: User;
+   user2 = { userName: 'rabu', userId: 102 };
+   users.push(user2);
+
+   let user3: User;
+   user3 = { userName: 'lucky', userId: 103 };
+   users.push(user3);
+
+   // console.log(users);
+
+   type RequestType = 'GET' | 'POST';
+   let getRequest: RequestType;
+   getRequest = 'GET';
+
+   function requestHandler(requestType: RequestType) {
+     console.log(requestType);
+   }
+   requestHandler('GET');
+   ```
+
+## 1.4 class
 
 ### 6.1 class basics and objects
 
@@ -419,10 +467,10 @@ let userName = "anis"; // data type inferred as string
     }
   }
 
-  let user1 = new User("Anisul Islam", 25);
+  let user1 = new User('Anisul Islam', 25);
   user1.display();
 
-  let user2 = new User("Rabeya Islam", 31);
+  let user2 = new User('Rabeya Islam', 31);
   user2.display();
   ```
 
@@ -459,10 +507,10 @@ class Student extends User {
   }
 }
 
-let student1 = new Student("keya", 31, 1302020015);
+let student1 = new Student('keya', 31, 1302020015);
 student1.display();
 
-let user1 = new User("Anisul Islam", 25);
+let user1 = new User('Anisul Islam', 25);
 user1.display();
 
 // let user2 = new User("Rabeya Islam", 31);
@@ -565,11 +613,9 @@ user1.display();
 
   ```
 
-## 7. Interface
+## 1.5 Interface
 
-- interface
-
-### Example 1
+- Example 1
 
 ```js
 // without interface
@@ -585,7 +631,7 @@ let user1: {
   age: number,
 } = {
   id: 1,
-  name: "Mr. Potato",
+  name: 'Mr. Potato',
   age: 32,
 };
 
@@ -593,7 +639,7 @@ let user2: {
   id: number,
   name: string,
   age: number,
-} = { id: 2, name: "Ms. Tomato", age: 21 };
+} = { id: 2, name: 'Ms. Tomato', age: 21 };
 
 users.push(user1);
 users.push(user2);
@@ -613,8 +659,8 @@ interface User {
 
 let users: User[] = [];
 
-let user1: User = { id: 1, name: "Mr. Potato", age: 32 };
-let user2: User = { id: 2, name: "Ms. Tomato", age: 21 };
+let user1: User = { id: 1, name: 'Mr. Potato', age: 32 };
+let user2: User = { id: 2, name: 'Ms. Tomato', age: 21 };
 
 users.push(user1);
 users.push(user2);
@@ -626,9 +672,9 @@ const printUserInfo = (user: User) => {
 users.forEach((user) => printUserInfo(user));
 ```
 
-### Example 2
+- Example 2
 
-````js
+```js
   // class implements interface
   interface UserFormatter {
     formatUser: () => string;
@@ -645,32 +691,34 @@ users.forEach((user) => printUserInfo(user));
     let user = new User("Mr. Potato", 32);
     console.log(user);
     console.log(user.formatUser());
-  ```
+```
 
-## 8. Interface vs type
+## 1.6 Interface vs type
 
 - both are nearly similar in most cases.
 - However, Adding new filed after creation is possible for an interface but not possible for a type.
 
 ### Example 1
 
+```js
+interface Color {
+  title: string;
+}
+interface Color {
+  text: string;
+}
+// now class A has access to title and string
+class A implements Color {
+  title: string;
+  text: string;
+}
 ```
-    interface Color {
-      title: string;
-    }
-    interface Color {
-      text: string;
-    }
-    // now class A has access to title and string
-    class A implements Color {
-      title: string;
-      text: string;
-    }
-```
+
 - both can be extended
+
 ### Example 2
 
-```
+```js
 interface IFUser {
   name: string;
 }
@@ -681,23 +729,21 @@ interface IFStudent extends IFUser {
 
 // Extending a type via intersections
 type User = {
-  name: string;
+  name: string,
 };
 
 type Student = User & {
-  student_id: string;
+  student_id: string,
 };
 
 let s1: Student;
 s1 = {
-  name: "anisul islam",
-  student_id: "1302",
+  name: 'anisul islam',
+  student_id: '1302',
 };
 ```
 
-### Example 3
-
-```
+```js
 interface IFUser {
   name: string;
 }
@@ -720,9 +766,8 @@ class Student implements IFStudent {
   };
 }
 
-const s1 = new Student("anisul islam", "1302020017");
+const s1 = new Student('anisul islam', '1302020017');
 console.log(s1.printDetails());
-
 ```
 
 ## 9. tsconfig
@@ -732,7 +777,7 @@ console.log(s1.printDetails());
 - in terminal -> tsc --init
 - edit tsconfig.json as shown in the following example
 
-```
+```json
 {
   "compilerOptions": {
     "target": "es5",
@@ -746,7 +791,7 @@ console.log(s1.printDetails());
   "include": ["./src"],
   "files": ["./src/index.ts", "./src/app.ts"]
 }
-````
+```
 
 ## 10. function signature
 
@@ -759,7 +804,7 @@ console.log(s1.printDetails());
   let userInfo3: (name: string) => string;
 
   userInfo1 = () => {
-    console.log("Anisul Islam is 32 years old");
+    console.log('Anisul Islam is 32 years old');
   };
 
   userInfo2 = (name: string) => {
@@ -771,8 +816,8 @@ console.log(s1.printDetails());
   };
 
   userInfo1();
-  userInfo2("Anisul Islam");
-  console.log(userInfo3("Anisul Islam"));
+  userInfo2('Anisul Islam');
+  console.log(userInfo3('Anisul Islam'));
   ```
 
 ## 11. Creating types from types
@@ -804,17 +849,17 @@ const addBefore = <T1>(numbers: T1[], x: T1) => {
 let numbers = [20, 30, 40];
 console.log(addBefore(numbers, 10));
 
-let countries = ["bangladesh", "pakistan", "India"];
-console.log(addBefore(countries, "Australia"));
+let countries = ['bangladesh', 'pakistan', 'India'];
+console.log(addBefore(countries, 'Australia'));
 
 // Another example
 const printUserInfo = <X, Y>(userId: X, userAge: Y) => {
   console.log(`ID : ${userId}, Age: ${userAge}`);
 };
-printUserInfo("101", 32);
+printUserInfo('101', 32);
 printUserInfo(101, 32);
-printUserInfo(101, "32");
-printUserInfo("101", "32");
+printUserInfo(101, '32');
+printUserInfo('101', '32');
 ```
 
 ### keyof type Example -
@@ -853,10 +898,10 @@ type Example2 = string
 // type guards with typeof
 // typeof variable === string/number/boolean/symbol/undefined/object/function
 const printAllTodos = (todos: string[] | null) => {
-  if (typeof todos === "object") {
+  if (typeof todos === 'object') {
     todos.map((todo) => console.log(todo));
   } else {
-    console.log("todos are empty");
+    console.log('todos are empty');
   }
 };
 ```
@@ -869,12 +914,12 @@ const printAllTodos = (todos: string[] | null) => {
   if (todos) {
     todos.map((todo) => console.log(todo));
   } else {
-    console.log("todos are empty");
+    console.log('todos are empty');
   }
 };
 
 const todos1 = null;
-const todos2 = ["todo1", "todo2", "todo3"];
+const todos2 = ['todo1', 'todo2', 'todo3'];
 printAllTodos(todos1);
 printAllTodos(todos2);
 ```
@@ -955,24 +1000,24 @@ addButton?.addEventListener("click", () => {
 ```
 
 ```ts
-const form = document.querySelector(".user-form") as HTMLFormElement;
+const form = document.querySelector('.user-form') as HTMLFormElement;
 console.log(form);
 
-const userNameInput = document.querySelector("#username") as HTMLInputElement;
+const userNameInput = document.querySelector('#username') as HTMLInputElement;
 console.log(userNameInput);
 
-const userEmailInput = document.querySelector("#useremail") as HTMLInputElement;
+const userEmailInput = document.querySelector('#useremail') as HTMLInputElement;
 console.log(userEmailInput);
 
 const userCountrySelect = document.querySelector(
-  "#country"
+  '#country'
 ) as HTMLSelectElement;
 console.log(userCountrySelect);
 
-const userFeedback = document.querySelector("#feedback") as HTMLTextAreaElement;
+const userFeedback = document.querySelector('#feedback') as HTMLTextAreaElement;
 console.log(userFeedback);
 
-form.addEventListener("submit", (e: Event) => {
+form.addEventListener('submit', (e: Event) => {
   e.preventDefault();
   let userData = {
     userName: userNameInput.value,
