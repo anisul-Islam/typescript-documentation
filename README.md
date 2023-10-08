@@ -910,13 +910,86 @@ const square = (x: number): number => x * x;
 
 ### 2.1 Creating types from types
 
-#### Generics Example -
+
+Generics in TypeScript provide a way to create reusable, type-safe functions, classes, and interfaces that work with a variety of data types. They allow you to write code that can operate on values of different types while preserving type information. Generics are denoted using angle brackets (`<>`) and can be used with functions, classes, and interfaces.
+
+Here's an overview of how to use generics in TypeScript:
+
+**1. Generic Functions:**
+
+A generic function can accept arguments of any type while maintaining type safety. You define a generic function by placing a type parameter in angle brackets before the function's parameter list. For example:
+
+```typescript
+function identity<T>(arg: T): T {
+    return arg;
+}
+
+// Usage
+const result1: number = identity(42);       // T is inferred as 'number'
+const result2: string = identity("hello");  // T is inferred as 'string'
+```
+
+In this example, `T` is a type parameter that represents the type of the argument `arg`. The type of `T` is inferred based on the actual argument passed to the function.
+
+**2. Generic Classes:**
+
+You can create generic classes that work with different types. Here's an example of a generic class that holds a value of type `T`:
+
+```typescript
+class Box<T> {
+    private value: T;
+
+    constructor(value: T) {
+        this.value = value;
+    }
+
+    getValue(): T {
+        return this.value;
+    }
+}
+
+// Usage
+const numberBox = new Box(42);          // 'T' is inferred as 'number'
+const stringBox = new Box("hello");     // 'T' is inferred as 'string'
+
+const numValue: number = numberBox.getValue();
+const strValue: string = stringBox.getValue();
+```
+
+In this case, the class `Box` is generic with a type parameter `T`. It allows you to create instances of `Box` with different types.
+
+**3. Generic Interfaces:**
+
+You can also create generic interfaces that describe the shape of objects with different types:
+
+```typescript
+interface Pair<T, U> {
+    first: T;
+    second: U;
+}
+
+const pair: Pair<number, string> = { first: 42, second: "hello" };
+```
+
+Here, the `Pair` interface is generic with two type parameters, `T` and `U`, representing the types of the `first` and `second` properties.
+
+Generics in TypeScript provide flexibility and type safety, allowing you to write more reusable and maintainable code. They are particularly useful when working with data structures, utility functions, and libraries that need to work with various types.
 
 ```js
 // make components reusable
 // make components flexible
 // C# and java have this generic feature
 // generic allows us to create own types
+
+// problem without generic
+function printUserInfo(userId: string | number | null){
+  console.log(`user id: ${userId}`)
+}
+printUserInfo("101");
+printUserInfo(101);
+printUserInfo(null);
+printUserInfo({id: 101});
+printUserInfo(true);
 
 const displayValue1 = (x) => {
   return x;
