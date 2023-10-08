@@ -12,13 +12,17 @@
 
    [1.3 Data Types: User defined types](#13-data-types-user-defined)
 
+   [1.4 tsconfig](#14-tsconfig)
+
+   [1.5 function](#15-function)
+
 2. [Intermediate TypeScript Topics]()
 
 3. [Advanced TypeScript Topics]()
 
 ## 1. Basic Typescript Topics
 
-## 1.1 Introduction to Typescript
+### 1.1 Introduction to Typescript
 
 What is TypeScript?
 
@@ -133,7 +137,7 @@ First typescript program
   name. //intellisense support will be here
   ```
 
-## 1.2 Data Types: Built-in / Basic Types
+### 1.2 Data Types: Built-in / Basic Types
 
 - Any (super type)
   - built in types: number, string, boolean, void, null, undefined, never
@@ -203,7 +207,7 @@ These basic types provide a foundation for specifying the types of variables and
   let userName = 'anis'; // data type inferred as string
   ```
 
-## 1.3 Data Types: User defined
+### 1.3 Data Types: User defined
 
 1. **union**: Union Type - more than one type for variable or function parameter. Program - odd/even for number and string to give idea about this union concept.
 
@@ -603,162 +607,155 @@ These basic types provide a foundation for specifying the types of variables and
 
 9. **Interface type**
 
-- Example 1
+    ```js
+    // without interface
+    let users: {
+      id: number,
+      name: string,
+      age: number,
+    }[] = [];
 
-```js
-// without interface
-let users: {
-  id: number,
-  name: string,
-  age: number,
-}[] = [];
+    let user1: {
+      id: number,
+      name: string,
+      age: number,
+    } = {
+      id: 1,
+      name: 'Mr. Potato',
+      age: 32,
+    };
 
-let user1: {
-  id: number,
-  name: string,
-  age: number,
-} = {
-  id: 1,
-  name: 'Mr. Potato',
-  age: 32,
-};
+    let user2: {
+      id: number,
+      name: string,
+      age: number,
+    } = { id: 2, name: 'Ms. Tomato', age: 21 };
 
-let user2: {
-  id: number,
-  name: string,
-  age: number,
-} = { id: 2, name: 'Ms. Tomato', age: 21 };
+    users.push(user1);
+    users.push(user2);
 
-users.push(user1);
-users.push(user2);
+    const printUserInfo = (user: { id: number, name: string, age: number }) => {
+      console.log(`userid = ${user.id}, name = ${user.name}, age = ${user.age}`);
+    };
 
-const printUserInfo = (user: { id: number, name: string, age: number }) => {
-  console.log(`userid = ${user.id}, name = ${user.name}, age = ${user.age}`);
-};
+    users.forEach((user) => printUserInfo(user));
 
-users.forEach((user) => printUserInfo(user));
+    // with interface
+    interface User {
+      id: number;
+      name: string;
+      age: number;
+    }
 
-// with interface
-interface User {
-  id: number;
-  name: string;
-  age: number;
-}
+    let users: User[] = [];
 
-let users: User[] = [];
+    let user1: User = { id: 1, name: 'Mr. Potato', age: 32 };
+    let user2: User = { id: 2, name: 'Ms. Tomato', age: 21 };
 
-let user1: User = { id: 1, name: 'Mr. Potato', age: 32 };
-let user2: User = { id: 2, name: 'Ms. Tomato', age: 21 };
+    users.push(user1);
+    users.push(user2);
 
-users.push(user1);
-users.push(user2);
+    const printUserInfo = (user: User) => {
+      console.log(`userid = ${user.id}, name = ${user.name}, age = ${user.age}`);
+    };
 
-const printUserInfo = (user: User) => {
-  console.log(`userid = ${user.id}, name = ${user.name}, age = ${user.age}`);
-};
+    users.forEach((user) => printUserInfo(user));
+    ```
 
-users.forEach((user) => printUserInfo(user));
-```
+    ```js
+        // class implements interface
+        interface UserFormatter {
+          formatUser: () => string;
+        }
 
-- Example 2
+          export class User implements UserFormatter {
+            constructor(private fullName: string, private age: number) {}
 
-```js
-  // class implements interface
-  interface UserFormatter {
-    formatUser: () => string;
-  }
+            formatUser = () => {
+              return `name: ${this.fullName}, age: ${this.age}`;
+            };
+          }
 
-    export class User implements UserFormatter {
-      constructor(private fullName: string, private age: number) {}
+          let user = new User("Mr. Potato", 32);
+          console.log(user);
+          console.log(user.formatUser());
+      ```
 
-      formatUser = () => {
-        return `name: ${this.fullName}, age: ${this.age}`;
+10. **Interface vs type**
+
+    - both are nearly similar in most cases.
+    - However, Adding new filed after creation is possible for an interface but not possible for a type.
+
+    ```js
+    // Example 1
+    interface Color {
+      title: string;
+    }
+    interface Color {
+      text: string;
+    }
+    // now class A has access to title and string
+    class A implements Color {
+      title: string;
+      text: string;
+    }
+    ```
+
+    - both can be extended
+
+    ```js
+    interface IFUser {
+      name: string;
+    }
+
+    interface IFStudent extends IFUser {
+      student_id: string;
+    }
+
+    // Extending a type via intersections
+    type User = {
+      name: string,
+    };
+
+    type Student = User & {
+      student_id: string,
+    };
+
+    let s1: Student;
+    s1 = {
+      name: 'anisul islam',
+      student_id: '1302',
+    };
+    ```
+
+    ```js
+    interface IFUser {
+      name: string;
+    }
+
+    interface IFStudent extends IFUser {
+      student_id: string;
+    }
+
+    class Student implements IFStudent {
+      name: string;
+      student_id: string;
+
+      constructor(name, student_id) {
+        this.name = name;
+        this.student_id = student_id;
+      }
+
+      printDetails = () => {
+        return `${this.name}, ${this.student_id}`;
       };
     }
 
-    let user = new User("Mr. Potato", 32);
-    console.log(user);
-    console.log(user.formatUser());
-```
+    const s1 = new Student('anisul islam', '1302020017');
+    console.log(s1.printDetails());
+    ```
 
-## 1.6 Interface vs type
-
-- both are nearly similar in most cases.
-- However, Adding new filed after creation is possible for an interface but not possible for a type.
-
-### Example 1
-
-```js
-interface Color {
-  title: string;
-}
-interface Color {
-  text: string;
-}
-// now class A has access to title and string
-class A implements Color {
-  title: string;
-  text: string;
-}
-```
-
-- both can be extended
-
-### Example 2
-
-```js
-interface IFUser {
-  name: string;
-}
-
-interface IFStudent extends IFUser {
-  student_id: string;
-}
-
-// Extending a type via intersections
-type User = {
-  name: string,
-};
-
-type Student = User & {
-  student_id: string,
-};
-
-let s1: Student;
-s1 = {
-  name: 'anisul islam',
-  student_id: '1302',
-};
-```
-
-```js
-interface IFUser {
-  name: string;
-}
-
-interface IFStudent extends IFUser {
-  student_id: string;
-}
-
-class Student implements IFStudent {
-  name: string;
-  student_id: string;
-
-  constructor(name, student_id) {
-    this.name = name;
-    this.student_id = student_id;
-  }
-
-  printDetails = () => {
-    return `${this.name}, ${this.student_id}`;
-  };
-}
-
-const s1 = new Student('anisul islam', '1302020017');
-console.log(s1.printDetails());
-```
-
-## 9. tsconfig
+### 1.4 tsconfig
 
 - create src, public folder
 - Inside public folder create index.html, style.css and inside src folder create index.ts or other ts files
@@ -781,9 +778,87 @@ console.log(s1.printDetails());
 }
 ```
 
-## 10. function signature
+- run the compiler: tsc
 
-- example
+### 1.5 function
+
+Explore TypeScript function types, including defining function signatures and using optional and default parameters.
+
+Sure, let's explore functions in TypeScript with some code examples. TypeScript is a statically typed superset of JavaScript, so you'll notice type annotations to specify the types of parameters and return values. This helps catch type-related errors at compile time.
+
+**Basic Function in TypeScript:**
+
+```typescript
+function add(a: number, b: number): number {
+    return a + b;
+}
+
+const result: number = add(5, 3); // 'result' will be 8
+```
+
+In this example:
+
+- `function add(a: number, b: number): number` defines a function named `add` that takes two parameters, `a` and `b`, both of type `number`. It also specifies that the function returns a value of type `number`.
+
+- The function body adds `a` and `b` and returns the result.
+
+- We call the `add` function with `add(5, 3)`, and the result is stored in the variable `result`.
+
+**Function with Default Parameter:**
+
+You can specify default values for function parameters:
+
+```typescript
+function greet(name: string = "User"): string {
+    return `Hello, ${name}!`;
+}
+
+const message: string = greet(); // 'message' will be "Hello, User!"
+```
+
+In this example, the `name` parameter has a default value of `"User"`. If you don't provide an argument when calling `greet`, it uses the default value.
+
+**Function with Rest Parameters:**
+
+Rest parameters allow you to pass an arbitrary number of arguments as an array:
+
+```typescript
+function sum(...numbers: number[]): number {
+    return numbers.reduce((total, num) => total + num, 0);
+}
+
+const total: number = sum(1, 2, 3, 4, 5); // 'total' will be 15
+```
+
+The `...numbers` syntax collects all arguments passed to the `sum` function into an array called `numbers`.
+
+**Function with Callback:**
+
+You can pass functions as parameters to other functions:
+
+```typescript
+function calculate(a: number, b: number, operation: (x: number, y: number) => number): number {
+    return operation(a, b);
+}
+
+const addition = (x: number, y: number) => x + y;
+const subtraction = (x: number, y: number) => x - y;
+
+const result1: number = calculate(5, 3, addition);      // 'result1' will be 8
+const result2: number = calculate(5, 3, subtraction);   // 'result2' will be 2
+```
+
+Here, the `calculate` function accepts an `operation` parameter, which is a function that takes two numbers and returns a number.
+
+**Arrow Functions:**
+
+Arrow functions provide a concise way to define functions:
+
+```typescript
+const square = (x: number): number => x * x;
+```
+
+- Function signature
 
   ```js
   // function signature
@@ -808,9 +883,26 @@ console.log(s1.printDetails());
   console.log(userInfo3('Anisul Islam'));
   ```
 
-## 11. Creating types from types
+- function signature in interface
 
-### Generics Example -
+```ts
+   interface IUserFormatter{
+    formatUser: () => string
+  }
+
+  class User implements IUserFormatter{
+    constructor(private fullName: string, private age: number){}
+    formatUser = () => {
+      return `name: ${this.fullName}, age: ${this.age}`
+    }
+  }
+```
+
+## 2. Intermediate Typescript Topics
+
+### 2.1 Creating types from types
+
+#### Generics Example -
 
 ```js
 // make components reusable
@@ -850,16 +942,57 @@ printUserInfo(101, '32');
 printUserInfo('101', '32');
 ```
 
-### keyof type Example -
+#### keyof type Example 
 
-### typeof type Example -
+The `keyof` keyword in TypeScript is used to create a union type of all the keys of an object type. It allows you to work with object keys in a type-safe way. Here's an example of how to use `keyof` in TypeScript:
+
+```typescript
+// Define an object type
+type Person = {
+    name: string;
+    age: number;
+    address: string;
+};
+
+// Use 'keyof' to create a union type of all keys in the 'Person' type
+type PersonKeys = keyof Person;
+
+// Usage example
+const person: Person = {
+    name: "Alice",
+    age: 30,
+    address: "123 Main St",
+};
+
+// Accessing properties using 'keyof' and dot notation
+const nameKey: PersonKeys = "name"; // Valid
+const ageKey: PersonKeys = "age";   // Valid
+const addressKey: PersonKeys = "address"; // Valid
+
+// The following will result in a compile error:
+// const invalidKey: PersonKeys = "email"; // Error: Type '"email"' is not assignable to type 'keyof Person'.
+```
+
+In this example:
+
+- We define an object type `Person` with properties `name`, `age`, and `address`.
+
+- We use `keyof Person` to create a type `PersonKeys`, which is a union type of all keys in the `Person` type. In this case, `PersonKeys` is equivalent to `"name" | "age" | "address"`.
+
+- We demonstrate how to use `PersonKeys` to declare variables like `nameKey`, `ageKey`, and `addressKey`, which can only be assigned keys that exist in the `Person` type.
+
+- If you attempt to assign a value that is not a valid key in the `Person` type, TypeScript will raise a compile-time error, ensuring type safety.
+
+The `keyof` type operator is useful when you want to perform operations on object keys dynamically or when you want to enforce type safety when working with object properties. It is commonly used in scenarios where you want to write code that can work with various object structures without compromising type safety.
+
+#### typeof type Example -
 
 ```js
 let firstName: string;
 let lastName: typeof firstName;
 ```
 
-### Conditional type Example -
+#### Conditional type Example -
 
 ```js
 interface Animal {
@@ -878,9 +1011,44 @@ type Example2 = RegExp extends Animal ? number : string;
 type Example2 = string
 ```
 
-## 12. Narrowing
+### 2.2 Narrowing
 
-### Type guards Example
+Narrowing in TypeScript refers to the process of refining the type of a variable or expression within a certain code block based on conditional checks. It allows you to make your code more type-safe by reducing the range of possible types for a variable when certain conditions are met. TypeScript's control flow analysis can automatically narrow the types of variables based on the context.
+
+Here's an example of narrowing in TypeScript:
+
+```typescript
+function printLength(input: string | number) {
+    if (typeof input === "string") {
+        // Inside this block, 'input' is narrowed to type 'string'
+        console.log(`Length of string: ${input.length}`);
+    } else {
+        // Inside this block, 'input' is narrowed to type 'number'
+        console.log(`Value of number: ${input}`);
+    }
+}
+
+printLength("Hello, TypeScript!"); // Output: "Length of string: 18"
+printLength(42); // Output: "Value of number: 42"
+```
+
+In this example:
+
+- The `printLength` function takes an argument `input`, which can be either a `string` or a `number`.
+
+- Inside the function, we use a conditional statement (`if`) to check the type of `input` using `typeof`. When TypeScript sees this check, it narrows the type of `input` within each branch of the conditional:
+
+  - In the first branch, where `typeof input === "string"`, TypeScript narrows `input` to type `string`. This allows us to safely access the `length` property, which is specific to strings.
+
+  - In the second branch, where `typeof input !== "string"`, TypeScript narrows `input` to type `number`.
+
+This type narrowing ensures that we can only access properties or perform operations that are valid for the narrowed type within each branch. It helps catch type-related errors at compile time and provides better type safety.
+
+TypeScript's control flow analysis is especially useful when working with union types, where you need to handle different types within the same function or code block while maintaining type safety.
+
+### 2.3 Type guards Example
+
+- type guards with typeof
 
 ```js
 // type guards with typeof
@@ -894,7 +1062,7 @@ const printAllTodos = (todos: string[] | null) => {
 };
 ```
 
-### Truthiness narrowing Example
+#### Truthiness narrowing Example
 
 ```js
 // false -> 0,NaN,"" (the empty string), 0n (the bigint version of zero), null, undefined
@@ -912,15 +1080,15 @@ printAllTodos(todos1);
 printAllTodos(todos2);
 ```
 
-### Equality narrowing Example
+#### Equality narrowing Example
 
 ```js
 // == , ===, !=, !=== helps to narrow types
 ```
 
-## 13. DOM Manipulation with typescript
+### 2.4 DOM Manipulation with typescript
 
-### Example1
+- Example1
 
 ```html
 <body>
@@ -944,7 +1112,7 @@ addButton?.addEventListener("click", () => {
 });
 ```
 
-### Example2
+- Example2
 
 ```html
 <!DOCTYPE html>
