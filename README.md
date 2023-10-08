@@ -446,34 +446,34 @@ These basic types provide a foundation for specifying the types of variables and
    requestHandler('GET');
    ```
 
-8. **class Type OOP** - You can create class type as well. class can have constructor, properties, methods. create object - let objectName = new className()
+8. **class Type OOP** - You can create class type as well. class can have constructor, properties, methods. create object  let objectName = new className()
 
-- Class and constructor Example
+    - Class and constructor Example
 
-  ```js
-  class User {
-    // properties, methods, constructor
-    userName: string;
-    age: number;
+    ```js
+    class User {
+      // properties, methods, constructor
+      userName: string;
+      age: number;
 
-    constructor(userName: string, age: number) {
-      this.userName = userName;
-      this.age = age;
+      constructor(userName: string, age: number) {
+        this.userName = userName;
+        this.age = age;
+      }
+
+      display(): void {
+        console.log(`username: ${this.userName}, age: ${this.age}`);
+      }
     }
 
-    display(): void {
-      console.log(`username: ${this.userName}, age: ${this.age}`);
-    }
-  }
+    let user1 = new User('Anisul Islam', 25);
+    user1.display();
 
-  let user1 = new User('Anisul Islam', 25);
-  user1.display();
+    let user2 = new User('Rabeya Islam', 31);
+    user2.display();
+    ```
 
-  let user2 = new User('Rabeya Islam', 31);
-  user2.display();
-  ```
-
-- Inheritance: inheritance helps us to acquire properties of one class to another
+    - Inheritance: inheritance helps us to acquire properties of one class to another
 
     ```js
     class User {
@@ -514,65 +514,23 @@ These basic types provide a foundation for specifying the types of variables and
     // user2.display();
     ```
 
-- **Abstract class** - abstraction helps us to hide the implementation of something. class declared with abstract keyword. object can not be created from abstract class. if a class extends abstract class; it must inherit all the abstract methods
+    - **Abstract class** - abstraction helps us to hide the implementation of something. class declared with abstract keyword. object can not be created from abstract class. if a class extends abstract class; it must inherit all the abstract methods
 
-  ```js
-  abstract class User {
-    userName: string;
-    age: number;
-
-    constructor(userName: string, age: number) {
-      this.userName = userName;
-      this.age = age;
-    }
-
-    abstract display(): void;
-  }
-
-  class Student extends User {
-    studentId: number;
-
-    constructor(userName: string, age: number, studentId: number) {
-      super(userName, age);
-      this.studentId = studentId;
-    }
-    display(): void {
-      console.log(
-        `username: ${this.userName}, age: ${this.age}, id: ${this.studentId}`
-      );
-    }
-  }
-
-  let student1 = new Student("keya", 31, 1302020015);
-  student1.display();
-
-  ```
-
-### 6.4 Encapsulation and access modifiers
-
-- 4 key principles of Object Oriented Programming (OOP): Inheritance, Abstraction, Encapsulation, Polymorphism.
-- Encapsulation helps us to manage the visibility of class members.
-- Access modifiers: public, private, protected, readonly
-- example
-
-  ```js
-    // public, private, protected, readonly
-    class User {
-      readonly userName: string;
-      public age: number;
+    ```js
+    abstract class User {
+      userName: string;
+      age: number;
 
       constructor(userName: string, age: number) {
         this.userName = userName;
         this.age = age;
       }
 
-      display(): void {
-        console.log(`username: ${this.userName}, age: ${this.age}`);
-      }
+      abstract display(): void;
     }
 
     class Student extends User {
-      private studentId: number;
+      studentId: number;
 
       constructor(userName: string, age: number, studentId: number) {
         super(userName, age);
@@ -583,28 +541,67 @@ These basic types provide a foundation for specifying the types of variables and
           `username: ${this.userName}, age: ${this.age}, id: ${this.studentId}`
         );
       }
-
-      setStudentId(studentId: number): void {
-        this.studentId = studentId;
-      }
-
-      getStudentId(): number {
-        return this.studentId;
-      }
     }
 
     let student1 = new Student("keya", 31, 1302020015);
-    student1.setStudentId(1302020017);
-    console.log(student1.getStudentId());
-    // student1.display();
+    student1.display();
 
-    let user1 = new User("robi", 23);
-    console.log(user1.userName);
-    // user1.display();
+    ```
 
-  ```
+    - **Encapsulation and access modifiers** - 4 key principles of Object Oriented Programming (OOP): Inheritance, Abstraction, Encapsulation, Polymorphism. Encapsulation helps us to manage the visibility of class members. 4 Access modifiers: public, private, protected, readonly
 
-## 1.5 Interface
+    ![Access Modifiers](images/access-modifiers.png)
+
+    ```js
+      // public, private, protected, readonly
+      // setter and getter
+      class User {
+        readonly userName: string;
+        public age: number;
+
+        constructor(userName: string, age: number) {
+          this.userName = userName;
+          this.age = age;
+        }
+
+        display(): void {
+          console.log(`username: ${this.userName}, age: ${this.age}`);
+        }
+      }
+
+      class Student extends User {
+        private studentId: number;
+
+        constructor(userName: string, age: number, studentId: number) {
+          super(userName, age);
+          this.studentId = studentId;
+        }
+        display(): void {
+          console.log(
+            `username: ${this.userName}, age: ${this.age}, id: ${this.studentId}`
+          );
+        }
+
+        setStudentId(studentId: number): void {
+          this.studentId = studentId;
+        }
+
+        getStudentId(): number {
+          return this.studentId;
+        }
+      }
+
+      let student1 = new Student("keya", 31, 1302020015);
+      student1.setStudentId(1302020017);
+      console.log(student1.getStudentId());
+      // student1.display();
+
+      let user1 = new User("robi", 23);
+      console.log(user1.userName);
+      // user1.display();
+    ```
+
+9. **Interface type**
 
 - Example 1
 
