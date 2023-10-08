@@ -16,7 +16,15 @@
 
    [1.5 function](#15-function)
 
-2. [Intermediate TypeScript Topics]()
+2. [Intermediate TypeScript Topics](#2-intermediate-typescript-topics)
+
+   [2.1 Creating types from types](#21-creating-types-from-types)
+
+   [2.2 Narrowing](#22-narrowing)
+
+   [2.3 Type guards](#23-type-guards-example)
+   
+   [2.4 DOM Manipulation with typescripts](#24-dom-manipulation-with-typescript)
 
 3. [Advanced TypeScript Topics]()
 
