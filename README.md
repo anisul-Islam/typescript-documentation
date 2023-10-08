@@ -5,8 +5,11 @@
 ## Table of Contents
 
 1. [Basic Typescript Topics](#1-basic-typescript-topics)
+
    [1.1 Introduction to Typescript](#11-introduction-to-typescript)
+
    [1.2 Data Types: Built-in / Basic Types](#12-data-types-built-in--basic-types)
+
    [1.3 Data Types: User defined types](#13-data-types-user-defined)
 
 2. [Intermediate TypeScript Topics]()
@@ -443,13 +446,9 @@ These basic types provide a foundation for specifying the types of variables and
    requestHandler('GET');
    ```
 
-## 1.4 class
+8. **class Type OOP** - You can create class type as well. class can have constructor, properties, methods. create object - let objectName = new className()
 
-### 6.1 class basics and objects
-
-- class can have constructor, properties, methods
-- create object - let objectName = new className();
-- Example
+- Class and constructor Example
 
   ```js
   class User {
@@ -474,56 +473,48 @@ These basic types provide a foundation for specifying the types of variables and
   user2.display();
   ```
 
-### 6.2 Inheritance
+- Inheritance: inheritance helps us to acquire properties of one class to another
 
-- inheritance helps us to acquire properties of one class to another
+    ```js
+    class User {
+      userName: string;
+      age: number;
 
-```js
-class User {
-  userName: string;
-  age: number;
+      constructor(userName: string, age: number) {
+        this.userName = userName;
+        this.age = age;
+      }
 
-  constructor(userName: string, age: number) {
-    this.userName = userName;
-    this.age = age;
-  }
+      display(): void {
+        console.log(`username: ${this.userName}, age: ${this.age}`);
+      }
+    }
 
-  display(): void {
-    console.log(`username: ${this.userName}, age: ${this.age}`);
-  }
-}
+    class Student extends User {
+      studentId: number;
 
-class Student extends User {
-  studentId: number;
+      constructor(userName: string, age: number, studentId: number) {
+        super(userName, age);
+        this.studentId = studentId;
+      }
+      display(): void {
+        console.log(
+          `username: ${this.userName}, age: ${this.age}, id: ${this.studentId}`
+        );
+      }
+    }
 
-  constructor(userName: string, age: number, studentId: number) {
-    super(userName, age);
-    this.studentId = studentId;
-  }
-  display(): void {
-    console.log(
-      `username: ${this.userName}, age: ${this.age}, id: ${this.studentId}`
-    );
-  }
-}
+    let student1 = new Student('keya', 31, 1302020015);
+    student1.display();
 
-let student1 = new Student('keya', 31, 1302020015);
-student1.display();
+    let user1 = new User('Anisul Islam', 25);
+    user1.display();
 
-let user1 = new User('Anisul Islam', 25);
-user1.display();
+    // let user2 = new User("Rabeya Islam", 31);
+    // user2.display();
+    ```
 
-// let user2 = new User("Rabeya Islam", 31);
-// user2.display();
-```
-
-### 6.3 Abstract class
-
-- abstraction helps us to hide the implementation of something
-- class declared with abstract keyword
-- object can not be created from abstract class
-- if a class extends abstract class; it must inherit all the abstract methods
-- example
+- **Abstract class** - abstraction helps us to hide the implementation of something. class declared with abstract keyword. object can not be created from abstract class. if a class extends abstract class; it must inherit all the abstract methods
 
   ```js
   abstract class User {
