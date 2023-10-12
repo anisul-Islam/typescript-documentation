@@ -53,7 +53,8 @@ TS Versions
 - TypeScript 1.0 October 2014
 - TypeScript 2.0 September 2016
 - TypeScript 3.0 July 2018
-- TypeScript 4.0 - latest release August 2020
+- TypeScript 4.0 August 2020
+- TypeScript 5.0 - latest release March 2023
 
 Code Example of Javascript and TypeScript
 
