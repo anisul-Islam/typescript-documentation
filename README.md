@@ -23,7 +23,7 @@
    [2.2 Narrowing](#22-narrowing)
 
    [2.3 Type guards](#23-type-guards-example)
-   
+
    [2.4 DOM Manipulation with typescripts](#24-dom-manipulation-with-typescript)
 
 3. [Advanced TypeScript Topics]()
@@ -34,10 +34,12 @@
 
 What is TypeScript?
 
-- In a simple words, Types + JavaScript = TypeScript
+- In a simple words, Additional Types (tuples, enum, interfaces, generics etc)  + JavaScript = TypeScript
 - It is a superset of JS
-- developed and maintained by Microsoft
+- developed (2012) and maintained by Microsoft
 - we can use typeof to check data type
+- Js is dynamically types -> let x = 20;
+- Typescript add static typing to js -> let x: number = 20;
 
 Why TypeScript?
 
@@ -54,6 +56,7 @@ TS Versions
 - TypeScript 2.0 September 2016
 - TypeScript 3.0 July 2018
 - TypeScript 4.0 - latest release August 2020
+- TypeScript 5.4 - 2024
 
 Code Example of Javascript and TypeScript
 
@@ -612,6 +615,121 @@ These basic types provide a foundation for specifying the types of variables and
       console.log(user1.userName);
       // user1.display();
     ```
+
+### Inheritance
+
+Inheritance allows a class to inherit properties and methods from another class.
+
+### Encapsulation
+
+Encapsulation restricts direct access to some of an object's components, which can be achieved using access modifiers (`private`, `protected`, `public`).
+
+### Polymorphism
+
+Polymorphism allows methods to do different things based on the object it is acting upon, even though they share the same name.
+
+### Abstraction
+
+Abstraction allows you to define methods that must be created within any child classes built from the abstract class.
+
+Here’s an example that demonstrates all four principles:
+
+```typescript
+// Abstract class (Abstraction)
+abstract class Person {
+  private _name: string;
+  private _age: number;
+
+  constructor(name: string, age: number) {
+    this._name = name;
+    this._age = age;
+  }
+
+  get name(): string {
+    return this._name;
+  }
+
+  get age(): number {
+    return this._age;
+  }
+
+  // Abstract method
+  abstract getDescription(): string;
+}
+
+// Student class (Inheritance)
+class Student extends Person {
+  private _grade: number;
+
+  constructor(name: string, age: number, grade: number) {
+    super(name, age);
+    this._grade = grade;
+  }
+
+  get grade(): number {
+    return this._grade;
+  }
+
+  // Implementing abstract method (Polymorphism)
+  getDescription(): string {
+    return `Student: ${this.name}, Age: ${this.age}, Grade: ${this.grade}`;
+  }
+}
+
+// Teacher class (Inheritance)
+class Teacher extends Person {
+  private _subject: string;
+
+  constructor(name: string, age: number, subject: string) {
+    super(name, age);
+    this._subject = subject;
+  }
+
+  get subject(): string {
+    return this._subject;
+  }
+
+  // Implementing abstract method (Polymorphism)
+  getDescription(): string {
+    return `Teacher: ${this.name}, Age: ${this.age}, Subject: ${this.subject}`;
+  }
+}
+
+// Create instances and demonstrate polymorphism
+const student = new Student("Alice", 20, 90);
+const teacher = new Teacher("Bob", 45, "Mathematics");
+
+console.log(student.getDescription()); // Student: Alice, Age: 20, Grade: 90
+console.log(teacher.getDescription()); // Teacher: Bob, Age: 45, Subject: Mathematics
+
+// Encapsulation: attempting to access private properties directly will result in an error
+// console.log(student._name); // Error: Property '_name' is private and only accessible within class 'Person'.
+// console.log(teacher._subject); // Error: Property '_subject' is private and only accessible within class 'Teacher'.
+
+// Use getter methods to access encapsulated properties
+console.log(student.name); // Alice
+console.log(teacher.subject); // Mathematics
+```
+
+### Explanation
+
+1. **Abstraction**:
+   - The `Person` class is abstract and contains an abstract method `getDescription`.
+   - This method must be implemented by any non-abstract subclass of `Person`.
+
+2. **Encapsulation**:
+   - Private properties (`_name`, `_age`, `_grade`, `_subject`) are used to restrict direct access.
+   - Getter methods (`get name()`, `get age()`, `get grade()`, `get subject()`) are provided to access these private properties.
+
+3. **Inheritance**:
+   - The `Student` and `Teacher` classes inherit from the `Person` class.
+   - They call the constructor of the parent class using `super(name, age)`.
+
+4. **Polymorphism**:
+   - Both `Student` and `Teacher` implement the `getDescription` method from the `Person` class.
+   - This method behaves differently based on whether it's called on a `Student` or `Teacher` instance.
+
+This example demonstrates how you can use these OOP principles in TypeScript to create a well-structured and maintainable codebase.
 
 9. **Interface type**
 
